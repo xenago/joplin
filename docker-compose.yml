@@ -1,0 +1,73 @@
+name: joplin-stack
+
+# Based on https://github.com/laurent22/joplin/blob/dev/docker-compose.server.yml
+
+services:
+
+  joplin-postgres:
+    image: postgres:16
+    container_name: joplin-postgres
+    hostname: joplin-postgres
+    volumes:
+      - ../data/postgres/data:/var/lib/postgresql/data
+    restart: unless-stopped
+    env_file: joplin-server-env
+    environment:
+      - POSTGRES_USER=joplin
+      - POSTGRES_DB=joplindb
+
+  joplin-server:
+    # https://hub.docker.com/r/joplin/server/tags
+    image: joplin/server:3.5.2
+    container_name: joplin-server
+    hostname: joplin-server
+    volumes:
+      - ../data/joplin/joplin-storage:/joplin-storage
+    # Uncomment if using to use the optional export system
+    #  - ../data/export:/export
+    ports:
+      - 22300:22300
+    restart: unless-stopped
+    depends_on:
+      - joplin-postgres
+    env_file: joplin-server-env
+    environment:
+      - APP_PORT=22300
+      - DB_CLIENT=pg
+      - POSTGRES_HOST=joplin-postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=joplin
+      - POSTGRES_DATABASE=joplindb
+      - STORAGE_DRIVER=Type=Filesystem; Path=/joplin-storage
+
+  # Optional webapp
+  # Uncomment this service to build and deploy the webapp on port 22380
+#  joplin-webapp:
+#    container_name: joplin-webapp
+#    hostname: joplin-webapp
+#    build:
+#      context: .
+#      dockerfile: joplin-webapp-Dockerfile
+#    ports:
+#      - 22380:80
+#    restart: unless-stopped
+
+  # Optional exports
+  # Uncomment and configure this service to perform regular exports at a user-level
+  # By default, set to run at 11:50PM Eastern Time and retain 30 days of history
+  # You must check README.md before enabling this or it won't work!
+#  joplin-cron:
+#    # https://hub.docker.com/r/whefter/cron/tags
+#    image: whefter/cron:v1.0.8
+#    container_name: joplin-cron
+#    hostname: joplin-cron
+#    network_mode: none
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#    restart: unless-stopped
+#    depends_on:
+#      - joplin-server
+#    environment:
+#      TZ: America/Toronto
+#      CRON_JOPLIN_EXPORT: |
+#        50 23 * * * date && docker exec joplin-server bash -c 'BACKUP_RETENTION_DAYS=30; for PROFILE_PATH in /export/profiles/*/; do USER_NAME=$(basename "$$PROFILE_PATH"); npx --silent --yes joplin@3.5.1 --profile "$$PROFILE_PATH" sync && npx --silent --yes joplin@3.5.1 --profile "$$PROFILE_PATH" export --format jex "/export/backups/$${USER_NAME}_$(date -u +%Y%m%d_%H%M%SZ).jex"; done; find /export/backups/ -name "*.jex" -type f -mtime +$$BACKUP_RETENTION_DAYS -delete'
