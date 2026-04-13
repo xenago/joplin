@@ -209,7 +209,7 @@ Options in `Configuration > Synchronisation`:
 
 ### Importing
 
-Marph's [Jimmy]({https://github.com/marph91/jimmy) tool can be used to convert from formats other than `.md` for import to Joplin. I tested several methods and this was the easiest by far, though it won't always produce the exact equivalent output and will lack some metadata depending on your original source.
+Marph's [Jimmy](https://github.com/marph91/jimmy) tool can be used to convert from formats other than `.md` for import to Joplin. I tested several methods and this was the easiest by far, though it won't always produce the exact equivalent output and will lack some metadata depending on your original source.
 
 1. Export each note from original source application into its own separate file. I used the `.docx` export function from Samsung Notes to preserve embedded images (it also preserves last-modified time in the file name, but this is not parsed by Jimmy).
 
