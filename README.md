@@ -73,6 +73,7 @@ Here are the docs I used:
 The following aspects are relevant for this specific deployment:
 * ML transcription is not used
 * SMTP is not used
+* Nginx proxy is used
 * Optional webapp is built from source into a minimal container if needed
 * Optional exports can be enabled as a secondary backup option
 * IPv4 is used (IPv6 users will need to make some changes according to their own setups)
