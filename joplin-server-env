@@ -1,0 +1,6 @@
+# Set the Base URL to the actual proxied URL, with joplin subpath 
+APP_BASE_URL=https://subdomain.domain.tld/joplin
+
+# Set the internal postgres service account password
+POSTGRES_PASSWORD=setpasswordhere
+
