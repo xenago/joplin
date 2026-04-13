@@ -23,7 +23,7 @@ services:
     hostname: joplin-server
     volumes:
       - ../data/joplin/joplin-storage:/joplin-storage
-    # Uncomment if using to use the optional export system
+    # Uncomment if using the optional joplin-cron export system
     #  - ../data/export:/export
     ports:
       - 22300:22300
@@ -54,6 +54,7 @@ services:
 
   # Optional exports
   # Uncomment and configure this service to perform regular exports at a user-level
+  # Make sure to uncomment the /export path in joplin-server as well
   # By default, set to run at 11:50PM Eastern Time and retain 30 days of history
   # You must check README.md before enabling this or it won't work!
 #  joplin-cron:
