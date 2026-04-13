@@ -152,6 +152,8 @@ Prepare the compose stack:
 nano /srv/joplin/compose/docker-compose.yml
 ```
 
+Note: when a new version of a container is released, update the relevant tag in `docker-compose.yml`
+
 Prepare the environment variables from the example `joplin-server-env`:
 ```sh
 cp /srv/joplin/compose/joplin-server-env /srv/joplin/data/joplin-server-env
