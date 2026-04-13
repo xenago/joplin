@@ -1,0 +1,6 @@
+{
+  "sync.target": 9,
+  "sync.9.path": "https://subdomain.domain.tld/joplin",
+  "sync.9.username": "user1@example.com",
+  "sync.9.password": "user_password"
+}
