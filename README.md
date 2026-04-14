@@ -210,8 +210,23 @@ The web frontend can be accessed at `https://subdomain.domain.tld` directly. It 
 Options in `Configuration > Synchronisation`:
 
 * `Synchronisation target`: `Joplin Server`
-* `Joplin Server URL`: `https://subdomain.domain.tld/joplin` (the `/joplin` path is important, otherwise the frontend will call itself)
+* `Joplin Server URL`: `https://subdomain.domain.tld/joplin` (the `/joplin` path is important, otherwise the frontend will call itself instead of the server)
 * `Joplin Server email`: `<email address previously set for non-admin user`
+
+### Plugins
+
+Joplin clients can load plugins to adjust functionality.
+
+* The available plugins [can be browsed online to some degree](https://joplinapp.org/plugins)
+* Not all plugins are compatible with all clients
+* Be sure to check the plugin's About page to ensure it has been updated, and validate the source code to ensure the plugin does not do anything too crazy
+  * Generally speaking, make sure the plugin doesn't do anything that would break notes with the plugin removed
+
+I use these plugins:
+* [Quick Links](https://joplinapp.org/plugins/plugin/com.whatever.quick-links/)
+  * Use `@@` to quickly add a link to another other note
+* [Easy Backlinks](https://joplinapp.org/plugins/plugin/com.tuibyte.EasyBacklinks/)
+  * View notes linking to this one
 
 ### Importing
 
