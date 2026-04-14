@@ -73,6 +73,7 @@ Here are the docs I used:
 The following aspects are relevant for this specific deployment:
 * ML transcription is not used
 * SMTP is not used
+* Encryption is not used
 * Nginx proxy is used
 * Optional webapp is built from source into a minimal container if needed
 * Optional exports can be enabled as a secondary backup option
@@ -125,6 +126,7 @@ e.g. `/srv/joplin/data/export/profiles/user1@example.com/settings.json`
 Notes:
 * Sync target `9` means [self-hosted server](https://github.com/laurent22/joplin/blob/1ff71a64e18e1ae3f858281537e10ce678f0ee3d/packages/lib/SyncTargetJoplinServer.ts#L49)
 * Username is the user's email address in the admin panel
+* This will only work for your personal user account(s) whose passwords you are comfortable saving on the filesystem
 
 Once at least one profile settings file is present, and the compose stack has the `joplin-cron` service & the `export` volume mount enabled, scheduled exports can be saved to the `/srv/joplin/data/export/backups` folder. Exports older than 30 days will be deleted by default. I recommend using a separate backup system such as Syncovery or an rclone script to manage offsite mirroring and monitoring of these exports.
 
