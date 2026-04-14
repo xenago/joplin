@@ -1,6 +1,6 @@
 # joplin
 
-Deploy a container stack for Joplin, an AGPL-licensed management application for Markdown notes.
+Deploy a container stack for [Joplin](https://github.com/laurent22/joplin), an AGPL-licensed management system for Markdown notes.
 
 ## Architecture
 
