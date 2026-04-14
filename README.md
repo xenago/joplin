@@ -102,7 +102,7 @@ If the webapp is enabled in the compose stack, it will automatically rebuild if 
 
 The database and filesystem should be backed up using your standard tooling for any container or VM. However, it is also helpful to have a secondary type of export just in case.
 
-To facilitate this, a cron job can be enabled in the compose stack which exports directly to `.jex`.
+To facilitate this, a cron job can be enabled in the compose stack which exports directly to `.jex`. There is also [a plugin available](https://joplinapp.org/plugins/plugin/io.github.jackgruber.backup) which performs a similar task. JEX format exports have several limitations, such as a lack of history, but they could be useful if something goes wrong with your primary backup.
 
 Create the shared export directory and ensure file permissions are set to allow the joplin service user to write there:
 ```sh
