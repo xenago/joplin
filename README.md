@@ -82,7 +82,7 @@ The following aspects are relevant for this specific deployment:
 
 The webapp is not yet fully supported, but does work. It's the mobile app, just built for the web target platform instead.
 
-I set up a Dockerfile which works to build the webapp. This is based on work from these two PRs:
+I set up a [Dockerfile](joplin-webapp-Dockerfile) which builds the webapp and hosts the static files. This is based on work from these two PRs:
 * https://github.com/laurent22/joplin/pull/12563
 * https://github.com/joplin/web-app/pull/2
 
@@ -177,6 +177,7 @@ Create the proxy configuration on your nginx server based on the `joplin-nginx.c
 Edit the file before reloading the nginx configuration to apply:
 - Replace instances of `internal-joplin-host` with actual internal hostname (or IP address) of joplin server
 - Replace instances of `subdomain.domain.tld` with actual domain/subdomain
+- Omit the base/root server path if not hosting the webapp
 - Replace `ssl_certificate` lines entirely, if you are using other certificate paths, such as a wildcard of the base domain
 
 By default, the configuration will limit access to internal IPv4 network IP ranges only. DO NOT MODIFY this behaviour until the server is fully configured in the subsequent step, unless you are using IPv6-only networking (in which case you would need to customize it according to your needs).
