@@ -228,6 +228,14 @@ I use these plugins:
 * [Easy Backlinks](https://joplinapp.org/plugins/plugin/com.tuibyte.EasyBacklinks/)
   * View notes linking to this one
 
+### Quirks
+
+* Search by Notebook title or tag
+  * The normal `F6` search shortcut does not search titles of Notebooks by default
+  * Instead, use `Ctrl + P` in combination with `@` or `#` as the first character
+  * `@` Will search Notebook Titles
+  * `#` Will search tags
+
 ### Importing
 
 Marph's [Jimmy](https://github.com/marph91/jimmy) tool can be used to convert from formats other than `.md` for import to Joplin. I tested several methods and this was the easiest by far, though it won't always produce the exact equivalent output and will lack some metadata depending on your original source.
