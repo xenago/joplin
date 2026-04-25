@@ -95,7 +95,7 @@ When new webapp versions are released, update the Dockerfile accordingly. Aside 
 * `FROM nginx:1.29.8-alpine`
   * Update to the most recent stable version of nginx [on Docker Hub](https://hub.docker.com/_/nginx)
 
-The webapp must be deployed on the same domain as the sync server, unless you want to deal with CORS. By default, this is how the Nginx example config in this repo is set up. If you want to host on a separate domain, you'll need to update the Dockerfile to patch `corsAllowedDomains` in `packages/server/src/app.ts` accordingly when building.
+The webapp must be deployed on the same domain as the sync server, unless you want to deal with CORS. By default, this is how the Nginx example config in this repo is set up. If you want to host on a separate domain, you'll need to patch `corsAllowedDomains` in `packages/server/src/app.ts` and build the server from source.
 
 If the webapp is enabled in the compose stack, it will automatically rebuild if the Dockerfile changes. A build can be triggered before running as well:
 `docker compose -f /path/to/docker-compose.yml build`
