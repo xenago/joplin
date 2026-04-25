@@ -34,7 +34,7 @@ Here are the docs I used:
 
 * Official docs (lacking)
   
-  https://github.com/laurent22/joplin/tree/dev/packages/server
+  https://joplinapp.org/help
 
 * Github source (best)
   
@@ -94,6 +94,8 @@ When new webapp versions are released, update the Dockerfile accordingly. Aside 
   * This should match [`/packages/app-mobile/.node-version`](https://github.com/laurent22/joplin/blob/dev/packages/app-mobile/.node-version) for whatever branch is being built
 * `FROM nginx:1.29.8-alpine`
   * Update to the most recent stable version of nginx [on Docker Hub](https://hub.docker.com/_/nginx)
+
+The webapp must be deployed on the same domain as the sync server, unless you want to deal with CORS. By default, this is how the Nginx example config in this repo is set up.
 
 If the webapp is enabled in the compose stack, it will automatically rebuild if the Dockerfile changes. A build can be triggered before running as well:
 `docker compose -f /path/to/docker-compose.yml build`
@@ -174,9 +176,9 @@ docker compose -f /srv/joplin/compose/docker-compose.yml logs -f
 
 ### Nginx proxy
 
-Create the proxy configuration on your nginx server based on the `joplin-nginx.conf` template. The template configures the webapp interface (mobile app compiled for web) to be served on the base/root path e.g. `https://subdomain.domain.tld` and the server (sync endpoint) to be served in the `/joplin` path, e.g. `https://subdomain.domain.tld/joplin`
+Create the proxy configuration on your nginx server based on the `joplin-nginx.conf` template. The template configures the webapp interface (mobile app compiled for web) to be served on the base/root path e.g. `https://subdomain.domain.tld` and the server (sync endpoint) to be served in the `/joplin` path, e.g. `https://subdomain.domain.tld/joplin`. As mentioned in the [webapp deployment notes](#Webapp deployment notes) above, this setup hosts both the sync server and the webapp from the same domain to avoid CORS issues.
 
-Edit the file before reloading the nginx configuration to apply:
+Edit the file before reloading the Nginx configuration to apply:
 - Replace instances of `internal-joplin-host` with actual internal hostname (or IP address) of joplin server
 - Replace instances of `subdomain.domain.tld` with actual domain/subdomain
 - Omit the base/root server path if not hosting the webapp
