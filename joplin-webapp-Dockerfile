@@ -1,6 +1,8 @@
 # Based on Robin-Sch's PR:
 # https://github.com/laurent22/joplin/pull/12563
-# This build uses 2 stages to avoid bloating the final image.
+# This build similarly uses 2 stages to avoid bloating the final image.
+# Alternatively, the webapp can be deployed on GitHub pages or with a different image:
+# https://github.com/adamoutler/web-app
 
 # =============================================================================
 # Build stage
