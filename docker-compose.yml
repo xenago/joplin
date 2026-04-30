@@ -39,6 +39,22 @@ services:
       - POSTGRES_USER=joplin
       - POSTGRES_DATABASE=joplindb
       - STORAGE_DRIVER=Type=Filesystem; Path=/joplin-storage
+      # Uncomment if starting the server results in `Cannot retrieve the network time from pool.ntp.org` error due to poor upstream container design
+      # - NTP_SERVER=time.nist.gov:123
+    # The container contains no healthcheck by default, but this works well enough
+    healthcheck:
+      test:
+        - "CMD-SHELL"
+        - |
+          node -e "
+          const { APP_PORT: port = 22300, APP_BASE_URL: url } = process.env;
+          const { host, origin } = new URL(url);
+          require('http').get({ host: 'localhost', port: port, path: '/api/ping', headers: { host, origin } }, r => process.exitCode = r.statusCode === 200 ? 0 : 1).on('error', () => process.exitCode = 1)
+          "
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
 
   # Optional webapp
   # Uncomment this service to build and deploy the webapp on port 22380
