@@ -85,7 +85,7 @@ The webapp is not yet fully supported, but does work. It's the mobile app, just 
 
 I set up a [Dockerfile](joplin-webapp-Dockerfile) which builds the webapp and hosts the static files. This is based on work from these two PRs:
 * https://github.com/laurent22/joplin/pull/12563
-* https://github.com/joplin/web-app/pull/2
+* https://github.com/joplin/web-app/pull/2 (see also https://github.com/adamoutler/web-app for GitHub Pages deployment or an alternative container image)
 
 When new webapp versions are released, update the Dockerfile accordingly. Aside from any changes noted in the release notes, these version numbers are worth looking at:
 * `--branch v3.5.13`
