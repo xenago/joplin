@@ -24,7 +24,7 @@ services:
 
   joplin-server:
     # https://hub.docker.com/r/joplin/server/tags
-    image: joplin/server:3.5.2
+    image: joplin/server:3.7.1
     container_name: joplin-server
     hostname: joplin-server
     volumes:
