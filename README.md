@@ -87,18 +87,20 @@ I set up a [Dockerfile](joplin-webapp-Dockerfile) which builds the webapp and ho
 * https://github.com/laurent22/joplin/pull/12563
 * https://github.com/joplin/web-app/pull/2 (see also [adamoutler/web-app](https://github.com/adamoutler/web-app) for GitHub Pages deployment or an alternative container image)
 
-When new webapp versions are released, update the Dockerfile accordingly. Aside from any changes noted in the release notes, these version numbers are worth looking at:
-* `--branch v3.5.13`
+When new webapp versions are released, update the Dockerfile accordingly or clone the changes from my repo. Aside from any changes noted in the release notes, these version numbers are worth looking at:
+* `--branch v3.7.10`
   * Specify [the git tag for the release version of Joplin](https://github.com/laurent22/joplin/releases) used to build the webapp
-* `FROM node:18`
-  * This should match [`/packages/app-mobile/.node-version`](https://github.com/laurent22/joplin/blob/dev/packages/app-mobile/.node-version) for whatever branch is being built
-* `FROM nginx:1.29.8-alpine`
+* `FROM node:22`
+  * This should match [`/packages/app-mobile/.node-version`](https://github.com/laurent22/joplin/blob/dev/packages/app-mobile/.node-version) for [whatever branch](https://github.com/laurent22/joplin/blob/v3.7.10/packages/app-mobile/.node-version) is being built
+* `FROM nginx:1.31.3-alpine`
   * Update to the most recent stable version of nginx [on Docker Hub](https://hub.docker.com/_/nginx)
 
 The webapp must be deployed on the same domain as the sync server, unless you want to deal with CORS. By default, this is how the Nginx example config in this repo is set up. If you want to host on a separate domain, you'll need to patch `corsAllowedDomains` in `packages/server/src/app.ts` and build the server from source. It is also possible to override the headers with nginx as described in [adamoutler/web-app - Configure CORS Headers](https://github.com/adamoutler/web-app#running-joplin-webapp-with-docker).
 
 If the webapp is enabled in the compose stack, it will automatically rebuild if the Dockerfile changes. A build can be triggered before running as well:
 `docker compose -f /path/to/docker-compose.yml build`
+
+Building the webapp is resource-intensive - doing so seems to require at least 4GB of physical memory.
 
 ### Backups/scheduled exports
 
