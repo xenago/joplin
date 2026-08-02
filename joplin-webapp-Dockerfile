@@ -7,7 +7,7 @@
 # =============================================================================
 # Build stage
 # =============================================================================
-FROM node:18 AS builder
+FROM node:22 AS builder
 
 # See https://github.com/Automattic/node-canvas/wiki/Installation:-Ubuntu-and-other-Debian-based-systems
 # I'm not sure why, but rsync is also seemingly required by a yarn build dependency
@@ -17,7 +17,7 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 
 # Pull in the code for the version being built
-RUN git clone --depth 1 --branch v3.5.13 https://github.com/laurent22/joplin.git
+RUN git clone --depth 1 --branch v3.7.10 https://github.com/laurent22/joplin.git
 
 # Enable Yarn
 RUN corepack enable
@@ -31,7 +31,7 @@ RUN cd joplin/packages/app-mobile && yarn web
 # Final stage
 # =============================================================================
 # Use nginx alpine for minimal image size
-FROM nginx:1.29.8-alpine
+FROM nginx:1.31.3-alpine
 
 # Add image metadata
 # https://github.com/opencontainers/image-spec/blob/master/annotations.md
