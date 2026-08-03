@@ -7,7 +7,7 @@
 # =============================================================================
 # Build stage
 # =============================================================================
-FROM node:22 AS builder
+FROM node:18 AS builder
 
 # See https://github.com/Automattic/node-canvas/wiki/Installation:-Ubuntu-and-other-Debian-based-systems
 # I'm not sure why, but rsync is also seemingly required by a yarn build dependency
@@ -17,7 +17,7 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 
 # Pull in the code for the version being built
-RUN git clone --depth 1 --branch v3.7.10 https://github.com/laurent22/joplin.git
+RUN git clone --depth 1 --branch v3.6.15 https://github.com/laurent22/joplin.git
 
 # Enable Yarn
 RUN corepack enable
