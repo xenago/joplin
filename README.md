@@ -88,9 +88,9 @@ I set up a [Dockerfile](joplin-webapp-Dockerfile) which builds the webapp and ho
 * https://github.com/joplin/web-app/pull/2 (see also [adamoutler/web-app](https://github.com/adamoutler/web-app) for GitHub Pages deployment or an alternative container image)
 
 When new webapp versions are released, update the Dockerfile accordingly or clone the changes from my repo. Aside from any changes noted in the release notes, these version numbers are worth looking at:
-* `--branch v3.7.10`
-  * Specify [the git tag for the release version of Joplin](https://github.com/laurent22/joplin/releases) used to build the webapp
-* `FROM node:22`
+* `--branch v3.6.15`
+  * Specify [the git tag for the release version of Joplin](https://github.com/laurent22/joplin/releases/latest) used to build the webapp - be careful not to use a pre-release or you may get into a catch-22 with Sync versions!
+* `FROM node:18`
   * This should match [`/packages/app-mobile/.node-version`](https://github.com/laurent22/joplin/blob/dev/packages/app-mobile/.node-version) for [whatever branch](https://github.com/laurent22/joplin/blob/v3.7.10/packages/app-mobile/.node-version) is being built
 * `FROM nginx:1.31.3-alpine`
   * Update to the most recent stable version of nginx [on Docker Hub](https://hub.docker.com/_/nginx)
