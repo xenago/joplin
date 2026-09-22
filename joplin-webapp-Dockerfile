@@ -17,7 +17,7 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 
 # Pull in the code for the version being built
-RUN git clone --depth 1 --branch v3.6.15 https://github.com/laurent22/joplin.git
+RUN git clone --depth 1 --branch v3.7.18 https://github.com/laurent22/joplin.git
 
 # Enable Yarn
 RUN corepack enable
@@ -31,7 +31,7 @@ RUN cd joplin/packages/app-mobile && yarn web
 # Final stage
 # =============================================================================
 # Use nginx alpine for minimal image size
-FROM nginx:1.31.3-alpine
+FROM nginx:1.31-alpine
 
 # Add image metadata
 # https://github.com/opencontainers/image-spec/blob/master/annotations.md
